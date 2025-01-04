@@ -1,0 +1,19 @@
+<div class="mt-20">
+  <div *ngIf="!registerMode" class="flex flex-col items-center">
+    <p class="text-xl">
+      Come on in to view your matches... all you need to do is sign up!
+    </p>
+    <div class="flex gap-x-10 mt-10">
+      <button
+        (click)="registerToggle()"
+        class="px-3 py-1 bg-teal-300 rounded-lg"
+      >
+        Register
+      </button>
+      <button class="px-3 py-1 bg-blue-300 rounded-lg">Learn more</button>
+    </div>
+  </div>
+  <div *ngIf="registerMode">
+    <app-register (cancelRegisterMode)="handleCancel($event)"></app-register>
+  </div>
+</div>

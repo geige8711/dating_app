@@ -1,0 +1,101 @@
+<header class="bg-black py-4">
+  <nav class="flex justify-start items-center w-[92%] mx-auto">
+    <div class="w-24 font-bold text-white">Dating App</div>
+
+    <div
+      *ngIf="accountService.currentUser()"
+      class="z-10 ml-20 nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5"
+    >
+      <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+        <li>
+          <a class="text-gray-400 hover:text-orange-300" href="#">Matches</a>
+        </li>
+        <li>
+          <a class="text-gray-400 hover:text-orange-300" href="#">Lists</a>
+        </li>
+        <li>
+          <a class="text-gray-400 hover:text-orange-300" href="#">Messages</a>
+        </li>
+      </ul>
+    </div>
+
+    <form
+      class="flex absolute w-11/12 justify-end mr-40"
+      #loginForm="ngForm"
+      (ngSubmit)="login()"
+      autocomplete="off"
+    >
+      <input
+        *ngIf="!accountService.currentUser()"
+        [(ngModel)]="model.username"
+        type="text"
+        name="username"
+        placeholder="Username"
+        class="mr-4 px-2 rounded-lg"
+      />
+      <input
+        *ngIf="!accountService.currentUser()"
+        [(ngModel)]="model.password"
+        name="password"
+        type="password"
+        placeholder="Password"
+        class="mr-4 px-2 rounded-lg"
+      />
+      <button
+        *ngIf="!accountService.currentUser()"
+        type="submit"
+        class="border w-20 text-gray-400 py-1 rounded-lg border-gray-400 hover:bg-blue-400 hover:text-white hover:border-gray-400"
+      >
+        Login
+      </button>
+      <div
+        class="relative mt-2 md:mt-0 mydropdown z-10"
+        *ngIf="accountService.currentUser()"
+      >
+        <button
+          (click)="toggleDropdown()"
+          class="text-white bg-gray-600 hover:bg-gray-500 focus:outline-none px-4 py-2 rounded-md inline-flex items-center"
+        >
+          Welcome User
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="4"
+            stroke="currentColor"
+            class="w-4 h-4 ml-2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m19.5 8.25-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </button>
+        <div
+          [ngClass]="
+            isDropdownOpen
+              ? 'transition ease-out duration-300 transform opacity-100 scale-100'
+              : 'transition ease-in duration-75 transform opacity-0 scale-95'
+          "
+          class="md:absolute right-0 mt-2 w-48 bg-gray-600 rounded-md shadow-lg z-20"
+        >
+          <a
+            href=""
+            class="block px-4 py-2 text-gray-100 hover:bg-amber-500 hover:rounded-t-md"
+            >Edit Profile</a
+          >
+          <a
+            href=""
+            (click)="logout()"
+            class="block px-4 py-2 text-gray-100 hover:bg-amber-500 hover:rounded-b-md"
+            >Log out</a
+          >
+        </div>
+      </div>
+    </form>
+    <div class="flex items-center gap-6">
+      <i class="fa-solid fa-bars cursor-pointer md:hidden text-white"></i>
+    </div>
+  </nav>
+</header>

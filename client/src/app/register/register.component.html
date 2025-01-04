@@ -1,0 +1,38 @@
+<form
+  #registerForm="ngForm"
+  class="flex flex-col items-center gap-y-6"
+  (ngSubmit)="register()"
+  autocomplete="off"
+>
+  <div class="flex gap-x-5 items-center">
+    <span class="font-bold">Username</span>
+    <input
+      class="w-80 h-10 border border-blue-300 rounded-lg px-3"
+      type="text"
+      placeholder="Username"
+      name="username"
+      [(ngModel)]="model.username"
+    />
+  </div>
+  <div class="flex gap-x-5 items-center">
+    <span class="font-bold">Password</span>
+    <input
+      class="w-80 h-10 border border-blue-300 rounded-lg px-3"
+      type="password"
+      name="password"
+      placeholder="Password"
+      [(ngModel)]="model.password"
+    />
+  </div>
+  <div class="flex gap-x-10">
+    <button class="px-3 py-1 bg-blue-600 text-white rounded-lg" type="submit">
+      Register
+    </button>
+    <button
+      class="px-3 py-1 border border-gray-300 rounded-lg"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+  </div>
+</form>
