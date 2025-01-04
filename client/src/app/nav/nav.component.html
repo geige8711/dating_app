@@ -1,6 +1,6 @@
 <header class="bg-black py-4">
   <nav class="flex justify-start items-center w-[92%] mx-auto">
-    <div class="w-24 font-bold text-white">Dating App</div>
+    <div class="w-24 font-bold text-white" routerLink="/">Dating App</div>
 
     <div
       *ngIf="accountService.currentUser()"
@@ -8,13 +8,31 @@
     >
       <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
         <li>
-          <a class="text-gray-400 hover:text-orange-300" href="#">Matches</a>
+          <a
+            routerLinkActive="text-orange-300"
+            routerLink="/members"
+            class="text-gray-400 hover:text-orange-300"
+            href="#"
+            >Matches</a
+          >
         </li>
         <li>
-          <a class="text-gray-400 hover:text-orange-300" href="#">Lists</a>
+          <a
+            routerLinkActive="text-orange-300"
+            routerLink="/lists"
+            class="text-gray-400 hover:text-orange-300"
+            href="#"
+            >Lists</a
+          >
         </li>
         <li>
-          <a class="text-gray-400 hover:text-orange-300" href="#">Messages</a>
+          <a
+            routerLinkActive="text-orange-300"
+            routerLink="/messages"
+            class="text-gray-400 hover:text-orange-300"
+            href="#"
+            >Messages</a
+          >
         </li>
       </ul>
     </div>
@@ -56,7 +74,7 @@
           (click)="toggleDropdown()"
           class="text-white bg-gray-600 hover:bg-gray-500 focus:outline-none px-4 py-2 rounded-md inline-flex items-center"
         >
-          Welcome User
+          Welcome {{ accountService.currentUser()?.username | titlecase }}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

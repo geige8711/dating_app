@@ -1,33 +1,40 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink, RouterLinkActive,TitleCasePipe],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
 export class NavComponent {
   accountService = inject(AccountService);
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
   model: any = {};
   isDropdownOpen = false;
 
   login() {
     this.accountService.login(this.model).subscribe({
-      next: (res) => {
+      next: (_) => {
+        this.router.navigateByUrl('/members');
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        this.toastr.error(err.error);
+      },
     });
   }
 
   logout() {
-    this.accountService.logout()
+    this.accountService.logout();
+    this.router.navigateByUrl('/');
   }
 
   toggleDropdown() {
-    console.log('++++++++=');
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
