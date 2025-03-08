@@ -1,0 +1,50 @@
+<div class="">
+  <div class="flex flex-row">
+    <div
+      class="border-b border-orange-400/50 px-4 py-2"
+      [ngClass]="{ 'border-orange-700 border-0 border-b-4': activeIndex === 0 }"
+      (click)="onTabClick(0)"
+    >
+      About Lois
+    </div>
+    <div
+      class="border-b border-orange-400/50 px-4 py-2"
+      [ngClass]="{ 'border-orange-700 border-0 border-b-4': activeIndex === 1 }"
+      (click)="onTabClick(1)"
+    >
+      Interests
+    </div>
+    <div
+      class="border-b border-orange-400/50 px-4 py-2"
+      [ngClass]="{ 'border-orange-700 border-0 border-b-4': activeIndex === 2 }"
+      (click)="onTabClick(2)"
+    >
+      Photo
+    </div>
+    <div
+      class="border-b border-orange-400/50 px-4 py-2"
+      [ngClass]="{ 'border-orange-700 border-0 border-b-4': activeIndex === 3 }"
+      (click)="onTabClick(3)"
+    >
+      Messages
+    </div>
+  </div>
+  <div class="mt-5">
+    <div *ngIf="activeIndex === 0">
+      <h2>Description</h2>
+      <div>{{ member.introduction }}</div>
+      <h2>Looking for</h2>
+      <div>{{ member.introduction }}</div>
+    </div>
+    <div *ngIf="activeIndex === 1">
+      <h2>Interests</h2>
+      <div>{{ member.interests }}</div>
+    </div>
+    <div *ngIf="activeIndex === 2">
+      <gallery [items]="photos"></gallery>
+    </div>
+    <div *ngIf="activeIndex === 3">
+      <h2>Messages</h2>
+    </div>
+  </div>
+</div>

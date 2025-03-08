@@ -1,0 +1,33 @@
+<div class="flex flex-col border border-slate-200 rounded-lg relative group">
+  <img
+    src="{{ member().photoUrl || 'user.png' }}"
+    alt="{{ member().knownAs }}"
+  />
+  <div class="flex flex-row justify-center gap-x-1 items-center">
+    <ng-icon name="bootstrapPersonFill" />
+    <span>{{ member().knownAs }}</span>
+  </div>
+  <div class="text-center">
+    {{ member().city }}
+  </div>
+  <div
+    class="hidden group-hover:flex flex-row absolute bottom-1/4 gap-x-1 justify-center w-full transition-all duration-1000 ease-in-out"
+  >
+    <div
+      routerLink="/members/{{ member().username }}"
+      class="w-10 h-10 rounded-lg flex items-center justify-center bg-orange-500 cursor-pointer"
+    >
+      <ng-icon name="bootstrapPersonFill" color="white" />
+    </div>
+    <div
+      class="w-10 h-10 rounded-lg flex items-center justify-center bg-orange-500 cursor-pointer"
+    >
+      <ng-icon name="bootstrapHeartFill" color="white" />
+    </div>
+    <div
+      class="w-10 h-10 rounded-lg flex items-center justify-center bg-orange-500 cursor-pointer"
+    >
+      <ng-icon name="bootstrapEnvelopeFill" color="white" />
+    </div>
+  </div>
+</div>

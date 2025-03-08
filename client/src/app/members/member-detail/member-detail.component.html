@@ -1,1 +1,31 @@
-<p>member-detail works!</p>
+@if(member){
+
+<div class="grid grid-cols-3 gap-5 mt-10 px-10">
+  <div class="border border-slate-300 rounded-lg p-4 flex flex-col gap-y-4">
+    <img class="w-full" src="{{ member.photoUrl }}" alt="" />
+    <div class="flex flex-col">
+      <div class="font-bold">Location:</div>
+      <div>{{ member.city }}, {{ member.country }}</div>
+    </div>
+    <div class="flex flex-col">
+      <div class="font-bold">Age:</div>
+      <div>{{ member.age }}</div>
+    </div>
+    <div class="flex flex-col">
+      <div class="font-bold">Last Active:</div>
+      <div>{{ member.lastActive }}</div>
+    </div>
+    <div class="flex flex-col">
+      <div class="font-bold">Member since</div>
+      <div>{{ member.created }}</div>
+    </div>
+    <div class="flex w-full">
+      <div class="w-1/2 bg-orange-500 rounded-l-lg text-white">Like</div>
+      <div class="w-1/2 bg-green-500 rounded-r-lg text-white">Message</div>
+    </div>
+  </div>
+  <div class="col-span-2">
+    <app-tabs [member]="member" [photos]="images"></app-tabs>
+  </div>
+</div>
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { CommonModule } from '@angular/common';
 
@@ -14,7 +14,7 @@ export class HomeComponent {
   registerToggle() {
     this.registerMode = !this.registerMode;
   }
-  handleCancel(value: boolean){
+  handleCancel(value: boolean) {
     this.registerMode = value;
   }
 }
