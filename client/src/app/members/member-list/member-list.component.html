@@ -1,5 +1,8 @@
 <div class="grid grid-cols-5 max-w-[1280px] mx-auto mt-10 gap-8">
-  <div *ngFor="let member of members">
+  @for(member of memberService.members(); track member.id){
+  <div>
     <app-member-card [member]="member"></app-member-card>
   </div>
+
+  }
 </div>

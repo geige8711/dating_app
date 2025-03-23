@@ -1,0 +1,110 @@
+@if(member){
+
+<div class="grid grid-cols-3 gap-5 my-10 px-10">
+  <div>
+    <h1 class="text-3xl mb-2">Your profile</h1>
+    <div class="border border-slate-300 rounded-lg p-4 flex flex-col gap-y-4">
+      <img class="w-full" src="{{ member.photoUrl }}" alt="" />
+      <div class="flex flex-col">
+        <div class="font-bold">Location:</div>
+        <div>{{ member.city }}, {{ member.country }}</div>
+      </div>
+      <div class="flex flex-col">
+        <div class="font-bold">Age:</div>
+        <div>{{ member.age }}</div>
+      </div>
+      <div class="flex flex-col">
+        <div class="font-bold">Last Active:</div>
+        <div>{{ member.lastActive }}</div>
+      </div>
+      <div class="flex flex-col">
+        <div class="font-bold">Member since</div>
+        <div>{{ member.created }}</div>
+      </div>
+      <button
+        [disabled]="!editForm.dirty"
+        form="editForm"
+        class="w-full bg-blue-500 py-3 px-3 rounded-lg text-white text-center disabled:bg-slate-200 disabled:cursor-not-allowed"
+      >
+        Save changes
+      </button>
+    </div>
+  </div>
+  <div class="col-span-2 relative">
+    <div class="flex flex-row mt-10">
+      <div
+        class="border-b border-orange-400/50 px-4 py-2"
+        [ngClass]="{
+          'border-orange-700 border-0 border-b-4': activeIndex === 0
+        }"
+        (click)="onTabClick(0)"
+      >
+        About {{ member.knownAs }}
+      </div>
+      <div
+        class="border-b border-orange-400/50 px-4 py-2"
+        [ngClass]="{
+          'border-orange-700 border-0 border-b-4': activeIndex === 1
+        }"
+        (click)="onTabClick(1)"
+      >
+        Edit photos
+      </div>
+    </div>
+    <div class="mt-5">
+      <div [ngClass]="{ hidden: activeIndex === 1 }">
+        @if(editForm.dirty){
+        <div class="absolute top-0 left-0 bg-teal-300 p-2 rounded-lg">
+          <strong>Information: </strong>You have made changes. Any unsaved
+          changes will be lost
+        </div>
+        }
+        <form id="editForm" #editForm="ngForm" (ngSubmit)="updateMember()">
+          <h2>Description:</h2>
+          <textarea
+            class="w-full border-slate-200 border p-3 mt-2"
+            name="introduction"
+            rows="6"
+            [(ngModel)]="member.introduction"
+          ></textarea>
+          <h2 class="mt-6">Looking for</h2>
+          <textarea
+            class="w-full border-slate-200 border p-3 mt-2"
+            name="lookingFor"
+            rows="6"
+            [(ngModel)]="member.lookingFor"
+          ></textarea>
+          <h2 class="mt-6">Interests</h2>
+          <textarea
+            class="w-full border-slate-200 border p-3 mt-2"
+            name="interests"
+            rows="6"
+            [(ngModel)]="member.interests"
+          ></textarea>
+          <h2 class="mt-6">Location Details</h2>
+          <div class="flex items-center">
+            <label class="mr-3">City:</label>
+            <input
+              class="flex-1 border border-slate-200 p-3 rounded-lg"
+              type="text"
+              name="city"
+              [(ngModel)]="member.city"
+            />
+            <label class="mx-3">Country:</label>
+            <input
+              class="flex-1 border border-slate-200 p-3 rounded-lg"
+              type="text"
+              name="country"
+              [(ngModel)]="member.country"
+            />
+          </div>
+        </form>
+      </div>
+      <div [ngClass]="{ hidden: activeIndex === 0 }">
+        <h2>Photos</h2>
+        <div>{{ member.interests }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+}
